@@ -7,6 +7,7 @@ import sun.security.krb5.internal.crypto.Des;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 
 public class CreateMobileDriver {
@@ -43,6 +44,21 @@ public class CreateMobileDriver {
 
     public static AppiumDriver launciOS(String appiumHost, DesiredCapabilities iosCaps){
         return launchApp(appiumHost,iosCaps);
+    }
+
+    public static DesiredCapabilities setAndroidcapabilities(){
+        return setCaps(getAndroidCaps());
+    }
+    public static HashMap<String, String> getAndroidCaps(){
+        HashMap<String, String> caps = new HashMap<String, String>();
+        caps.put("deviceName","Android Emulator");
+        caps.put("udid","emulator-5554");
+        caps.put("automationName","UiAutomator2");
+        caps.put("platformName","Android");
+        caps.put("platformVersion","10");
+        caps.put("appPackage","");
+        caps.put("appActivity","");
+        return caps;
     }
 
 
