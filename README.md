@@ -1,2 +1,2 @@
 # App-Visual-Regression
-React Native App Visual Regression automation using Java-Appium
+App Visual Regression automation using Java-Appium
