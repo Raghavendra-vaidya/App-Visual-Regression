@@ -6,7 +6,10 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import sun.security.krb5.internal.crypto.Des;
 
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,6 +29,7 @@ public class CreateMobileDriver {
         desiredCapabilities.setCapability("platformVersion", capabilities.get("platformVersion"));
         desiredCapabilities.setCapability("appPackage", capabilities.get("appPackage"));
         desiredCapabilities.setCapability("appActivity", capabilities.get("appActivity"));
+        desiredCapabilities.setCapability("app","AppFiles/Rapp-V1.apk");
 
         return desiredCapabilities;
     }
@@ -46,21 +50,19 @@ public class CreateMobileDriver {
         return launchApp(appiumHost,iosCaps);
     }
 
-    public static DesiredCapabilities setAndroidcapabilities(){
-        return setCaps(getAndroidCaps());
-    }
-    public static HashMap<String, String> getAndroidCaps(){
-        HashMap<String, String> caps = new HashMap<String, String>();
-        caps.put("deviceName","Android Emulator");
-        caps.put("udid","emulator-5554");
-        caps.put("automationName","UiAutomator2");
-        caps.put("platformName","Android");
-        caps.put("platformVersion","10");
-        caps.put("appPackage","");
-        caps.put("appActivity","");
-        return caps;
-    }
 
+    public static DesiredCapabilities androidCapabilities(){
+        DesiredCapabilities desiredCapabilities =  new DesiredCapabilities();
+        desiredCapabilities.setCapability("deviceName", "");
+        desiredCapabilities.setCapability("uuid","");
+        desiredCapabilities.setCapability("automationName", "");
+        desiredCapabilities.setCapability("platformName", "");
+        desiredCapabilities.setCapability("platformVersion", "");
+        desiredCapabilities.setCapability("appPackage", "");
+        desiredCapabilities.setCapability("appActivity", "");
+        desiredCapabilities.setCapability("app","AppFiles/Rapp-V1.apk");
+        return desiredCapabilities;
+    }
 
 
 

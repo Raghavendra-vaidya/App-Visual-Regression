@@ -1,36 +1,65 @@
 package com.visual.utilities;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.imagecomparison.SimilarityMatchingOptions;
+import io.appium.java_client.imagecomparison.SimilarityMatchingResult;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.testng.ITestResult;
+import org.testng.Assert;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class ProjectUtils {
 
+    static String BASELINE = "BASEIMAGE_";
+    static String VALIDATION_PATH = "./Images";
+    static double MATCH_THRESHOLD = 0.97;
 
 
-    public void captureScreen(AppiumDriver driver, ITestResult result){
+    public void doVisualValidation(AppiumDriver driver ,String checkName) throws Exception {
 
-        TakesScreenshot ts =(TakesScreenshot)driver;
-        File source = ts.getScreenshotAs(OutputType.FILE);
+            String baselineFilename = VALIDATION_PATH + "/" + BASELINE + checkName + ".png";
+            File baselineImg = new File(baselineFilename);
 
-        String mName  = result.getName();//name of the screenshot
-        String cName = result.getInstanceName();
-        File destinationName = new File("./images/"+cName+"/"+mName+".png");
+            // If no baseline image exists for this check, we should create a baseline image
+            if (!baselineImg.exists() ) {
+                System.out.println(String.format("No baseline found for '%s' check; capturing baseline instead of checking", checkName));
+                File newBaseline = driver.getScreenshotAs(OutputType.FILE);
+                FileUtils.copyFile(newBaseline, new File(baselineFilename));
+                return;
+            }
 
-        try {
-            Files.copy(source.toPath(), destinationName.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            e.printStackTrace();
+            // Otherwise, if we found a baseline, get the image similarity from Appium. In getting the similarity,
+            // we also turn on visualization so we can see what went wrong if something did.
+            SimilarityMatchingOptions opts = new SimilarityMatchingOptions();
+            opts.withEnabledVisualization();
+            SimilarityMatchingResult res = driver.getImagesSimilarity(baselineImg, driver.getScreenshotAs(OutputType.FILE), opts);
+
+            // If the similarity is not high enough, consider the check to have failed
+            if (res.getScore() < MATCH_THRESHOLD) {
+                File failViz = new File(VALIDATION_PATH + "/FAIL_" + checkName + ".png");
+                res.storeVisualization(failViz);
+                /*throw new Exception(
+                        String.format("Visual check of '%s' failed; similarity match was only %f, and below the threshold of %f. Visualization written to %s.",
+                                checkName, res.getScore(), MATCH_THRESHOLD, failViz.getAbsolutePath()));*/
+
+                Assert.assertTrue(res.getScore()> MATCH_THRESHOLD);
+            }
+
+
+
+            // Otherwise, it passed!
+            Assert.assertTrue(true, "Visual validation passed");
+            System.out.println(String.format("Visual check of '%s' passed; similarity match was %f",
+                    checkName, res.getScore()));
+
         }
 
 
-    }
 
 
 }
