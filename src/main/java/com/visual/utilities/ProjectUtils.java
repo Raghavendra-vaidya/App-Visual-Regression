@@ -80,5 +80,32 @@ public class ProjectUtils {
         }
     }
 
+    public static void deleteFailureImages()
+    {
+        File parentFolder = new File("VisualImages/");
+        if(parentFolder.exists() && parentFolder.list().length > 0)
+        {
+            String []names = parentFolder.list();
+            for(String name: names)
+            {
+                if (name.startsWith("FAIL"))
+                {
+                    FileUtils.deleteQuietly(new File("VisualImages/"+name));
+                }
+                else {
+                    continue;
+                }
+
+            }
+
+            //cleanDirectory method deletes folder contents
+        }
+        else
+        {
+            return;
+        }
+    }
+
+
 
 }
