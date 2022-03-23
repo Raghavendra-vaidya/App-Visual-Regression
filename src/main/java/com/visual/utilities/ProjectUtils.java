@@ -14,7 +14,7 @@ public class ProjectUtils {
 
     static String BASELINE = "BASEIMAGE_";
     static String VALIDATION_PATH = "./VisualImages";
-    static double MATCH_THRESHOLD = 0.97;
+    static double MATCH_THRESHOLD = 0.98;
 
 
     public static void doVisualValidation(AppiumDriver driver ,String checkName, boolean updateBaseImages) throws Exception {
@@ -28,14 +28,14 @@ public class ProjectUtils {
                 System.out.println(String.format("No baseline found for '%s' check; capturing baseline instead of checking", checkName));
                 File newBaseline = driver.getScreenshotAs(OutputType.FILE);
                 FileUtils.copyFile(newBaseline, new File(baselineFilename));
-                Assert.assertTrue(true, "Updated the base images");
+                Assert.assertTrue(true, "Initial run. Updated the base images");
                 return;
             }
             else if(updateBaseImages){
                 deleteImagesOptimised();
                 File newBaseline = driver.getScreenshotAs(OutputType.FILE);
                 FileUtils.copyFile(newBaseline, new File(baselineFilename));
-                Assert.assertTrue(true, "Updated the base images");
+                Assert.assertTrue(true, "Updated the base images as per flag passed");
                 return;
             }
 
@@ -69,7 +69,7 @@ public class ProjectUtils {
             String []names = parentFolder.list();
             for(String name: names)
             {
-                FileUtils.deleteQuietly(new File("./screenshots/"+name));
+                FileUtils.deleteQuietly(new File("VisualImages/"+name));
             }
 
             //cleanDirectory method deletes folder contents
@@ -79,5 +79,6 @@ public class ProjectUtils {
             return;
         }
     }
+
 
 }
