@@ -1,6 +1,5 @@
 package com.visual.tests;
 
-import com.visual.ui.HomeScreen;
 import com.visual.utilities.CreateMobileDriver;
 import com.visual.utilities.ProjectUtils;
 import io.appium.java_client.AppiumDriver;
@@ -11,30 +10,30 @@ import org.testng.annotations.Test;
 
 import static com.visual.utilities.GetData.fromProperties;
 
-public class HomeScreenTests {
+public class LoginScreenTests {
 
     AppiumDriver<MobileElement> driver;
-    HomeScreen home;
-    static final String CHECK_HOME ="Home_Screen";
+    com.visual.ui.HomeScreen home;
+    static final String CHECK_LOGIN ="Login_Screen";
     String host = fromProperties("HOST", "configFile");
 
 
     @BeforeMethod
     public void setup(){
         driver = CreateMobileDriver.launchAndroid(host, CreateMobileDriver.androidCapabilities());
-        home = new HomeScreen(driver);
+        home = new com.visual.ui.HomeScreen(driver);
     }
 
     @Test
     public void verifyHomeScreen(){
 
         home.waitForAllElementsToLoad();
+        home.getLoginButton().click();
 
-        try
-        {
-            ProjectUtils.doVisualValidation(driver,CHECK_HOME,false);
-        }
-        catch (Exception e) {e.printStackTrace();}
+        try {
+            Thread.sleep(2000);
+            ProjectUtils.doVisualValidation(driver,CHECK_LOGIN,false);
+        } catch (Exception e) {e.printStackTrace();}
     }
 
 
