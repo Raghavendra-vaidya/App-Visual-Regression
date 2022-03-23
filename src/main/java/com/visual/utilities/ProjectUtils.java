@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 public class ProjectUtils {
 
     static String BASELINE = "BASEIMAGE_";
-    static String VALIDATION_PATH = "./Images";
+    static String VALIDATION_PATH = "./VisualImages";
     static double MATCH_THRESHOLD = 0.97;
 
 

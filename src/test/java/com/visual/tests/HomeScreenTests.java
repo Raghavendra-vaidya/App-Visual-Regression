@@ -16,6 +16,7 @@ import static com.visual.utilities.GetData.fromProperties;
 public class HomeScreenTests {
     AppiumDriver<MobileElement> driver;
     HomeScreen home;
+    static final String CHECK_HOME ="Home_Screen";
 
     String host = fromProperties("HOST", "configFile");
 
