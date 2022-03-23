@@ -19,20 +19,6 @@ public class CreateMobileDriver {
     static DesiredCapabilities desiredCapabilities;
     static URL appiumHostURL;
 
-    public static DesiredCapabilities setCaps(Map capabilities){
-        desiredCapabilities = new DesiredCapabilities();
-
-        desiredCapabilities.setCapability("deviceName", capabilities.get("deviceName"));
-        desiredCapabilities.setCapability("uuid",capabilities.get("uuid"));
-        desiredCapabilities.setCapability("automationName", capabilities.get("automationName"));
-        desiredCapabilities.setCapability("platformName", capabilities.get("platformName"));
-        desiredCapabilities.setCapability("platformVersion", capabilities.get("platformVersion"));
-        desiredCapabilities.setCapability("appPackage", capabilities.get("appPackage"));
-        desiredCapabilities.setCapability("appActivity", capabilities.get("appActivity"));
-        desiredCapabilities.setCapability("app","AppFiles/Rapp-V1.apk");
-
-        return desiredCapabilities;
-    }
 
     public static AppiumDriver launchApp(String appiumHost, DesiredCapabilities caps)  {
         try {appiumHostURL = new URL(appiumHost);}
@@ -53,13 +39,13 @@ public class CreateMobileDriver {
 
     public static DesiredCapabilities androidCapabilities(){
         DesiredCapabilities desiredCapabilities =  new DesiredCapabilities();
-        desiredCapabilities.setCapability("deviceName", "");
-        desiredCapabilities.setCapability("uuid","");
-        desiredCapabilities.setCapability("automationName", "");
-        desiredCapabilities.setCapability("platformName", "");
-        desiredCapabilities.setCapability("platformVersion", "");
-        desiredCapabilities.setCapability("appPackage", "");
-        desiredCapabilities.setCapability("appActivity", "");
+        desiredCapabilities.setCapability("deviceName", "Pixel_XL_API_29");
+        desiredCapabilities.setCapability("uuid","emulator-5554");
+        desiredCapabilities.setCapability("automationName", "UiAutomator2");
+        desiredCapabilities.setCapability("platformName", "Android");
+        desiredCapabilities.setCapability("platformVersion", "10");
+        desiredCapabilities.setCapability("appPackage", "com.rapp");
+        desiredCapabilities.setCapability("appActivity", "com.rapp.MainActivity");
         desiredCapabilities.setCapability("app","AppFiles/Rapp-V1.apk");
         return desiredCapabilities;
     }
