@@ -46,7 +46,7 @@ public class CreateMobileDriver {
         desiredCapabilities.setCapability("platformVersion", "10");
         desiredCapabilities.setCapability("appPackage", "com.rapp");
         desiredCapabilities.setCapability("appActivity", "com.rapp.MainActivity");
-        desiredCapabilities.setCapability("app","AppFiles/Rapp-V1.apk");
+        desiredCapabilities.setCapability("app","./AppFiles/Rappv1.apk");
         return desiredCapabilities;
     }
 

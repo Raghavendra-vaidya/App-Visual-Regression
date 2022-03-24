@@ -30,7 +30,9 @@ public class ListScreenTests {
 
         home.waitForAllElementsToLoad();
         home.getListButton().click();
+
         try {
+            Thread.sleep(2000);
             ProjectUtils.doVisualValidation(driver,CHECK_LIST,false);
         } catch (Exception e) {
             e.printStackTrace();
