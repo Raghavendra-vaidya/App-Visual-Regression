@@ -1,6 +1,22 @@
 # App-Visual-Regression
-App Visual Regression automation using Java-Appium
 
+App Visual Regression automation using Java-Appium
+--
+Pre-requisites:
+
+1. Java 9
+2. opencv4nodejs installed locally
+3. Appium server locally installed
+---
+
+
+Stack:
+1. Java
+2. Appium
+3. testNG
+4. opencv4nodejs
+
+---
 
 Visual regression result screenshot:
 
