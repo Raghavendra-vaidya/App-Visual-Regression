@@ -1,6 +1,6 @@
 # App-Visual-Regression
 
-App Visual Regression automation using Java-Appium
+App visual regression automation using appium
 --
 Pre-requisites:
 
