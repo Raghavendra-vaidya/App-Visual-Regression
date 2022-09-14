@@ -5,8 +5,8 @@ App visual regression automation using appium
 Pre-requisites:
 
 1. Java 9
-2. opencv4nodejs should be installed locally
-3. Appium server should be installed
+2. opencv4nodejs 
+3. Appium server 
 ---
 
 
