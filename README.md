@@ -11,7 +11,7 @@ Pre-requisites:
 
 
 Stack:
-1. Java
+1. Java 9
 2. Appium
 3. testNG
 4. opencv4nodejs
