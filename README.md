@@ -1,4 +1,4 @@
-# App-Visual-Regression
+# App-Visual-Regression :iphone:
 
 App visual regression automation using appium
 --
