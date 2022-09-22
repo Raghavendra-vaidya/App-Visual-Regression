@@ -1,4 +1,4 @@
-# App-Visual-Regression :iphone:
+# App-visual-regression :iphone:
 
 App visual regression automation using appium
 --
@@ -8,8 +8,6 @@ Pre-requisites:
 2. opencv4nodejs 
 3. Appium server 
 ---
-
-
 Stack:
 1. Java 9
 2. Appium
