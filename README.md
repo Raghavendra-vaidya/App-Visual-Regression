@@ -1,6 +1,6 @@
 # App-visual-regression :iphone:
 
-App visual regression automation using appium
+App visual regression automation using appium.
 --
 Pre-requisites:
 
